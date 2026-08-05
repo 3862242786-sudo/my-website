@@ -118,6 +118,27 @@ body {
     box-shadow: none !important;
 }
 
+/* 导航栏个性化按钮 */
+.nav-personalize-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px !important;
+    border-radius: 20px !important;
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6 !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+}
+
+.nav-personalize-btn:hover {
+    background: rgba(59, 130, 246, 0.2) !important;
+    opacity: 1 !important;
+    box-shadow: none !important;
+}
+
 /* 导航栏管理后台按钮 */
 .nav-admin-btn {
     padding: 6px 16px !important;
@@ -155,6 +176,10 @@ body {
     border-radius: 12px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.15);
     min-width: 200px;
+    max-width: 320px;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 8px 0;
     opacity: 0;
     visibility: hidden;

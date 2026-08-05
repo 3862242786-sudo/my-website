@@ -1,0 +1,126 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.limeos.browser"
+4    android:versionCode="9"
+5    android:versionName="1.2.8" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:5:5-67
+11-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:6:5-79
+12-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:6:22-76
+13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+13-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:7:5-81
+13-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:7:22-78
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:8:5-80
+14-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:8:22-77
+15
+16    <permission
+16-->[androidx.core:core:1.9.0] /root/.gradle/caches/transforms-3/543740e42155bb89dcbd6bdda0f43b68/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+17        android:name="com.limeos.browser.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+17-->[androidx.core:core:1.9.0] /root/.gradle/caches/transforms-3/543740e42155bb89dcbd6bdda0f43b68/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+18        android:protectionLevel="signature" />
+18-->[androidx.core:core:1.9.0] /root/.gradle/caches/transforms-3/543740e42155bb89dcbd6bdda0f43b68/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+19
+20    <uses-permission android:name="com.limeos.browser.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+20-->[androidx.core:core:1.9.0] /root/.gradle/caches/transforms-3/543740e42155bb89dcbd6bdda0f43b68/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+20-->[androidx.core:core:1.9.0] /root/.gradle/caches/transforms-3/543740e42155bb89dcbd6bdda0f43b68/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+21
+22    <application
+22-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:10:5-41:19
+23        android:allowBackup="true"
+23-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:11:9-35
+24        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+24-->[androidx.core:core:1.9.0] /root/.gradle/caches/transforms-3/543740e42155bb89dcbd6bdda0f43b68/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+25        android:debuggable="true"
+26        android:extractNativeLibs="true"
+27        android:icon="@mipmap/ic_launcher"
+27-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:12:9-43
+28        android:label="@string/app_name"
+28-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:13:9-41
+29        android:roundIcon="@mipmap/ic_launcher_round"
+29-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:14:9-54
+30        android:supportsRtl="true"
+30-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:15:9-35
+31        android:theme="@style/Theme.LimeBrowser"
+31-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:16:9-49
+32        android:usesCleartextTraffic="true" >
+32-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:17:9-44
+33        <activity
+33-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:19:9-34:20
+34            android:name="com.limeos.browser.MainActivity"
+34-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:20:13-41
+35            android:configChanges="orientation|screenSize|keyboardHidden"
+35-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:22:13-74
+36            android:exported="true" >
+36-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:21:13-36
+37            <intent-filter>
+37-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:23:13-26:29
+38                <action android:name="android.intent.action.MAIN" />
+38-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:24:17-69
+38-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:24:25-66
+39
+40                <category android:name="android.intent.category.LAUNCHER" />
+40-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:25:17-77
+40-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:25:27-74
+41            </intent-filter>
+42            <intent-filter>
+42-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:27:13-33:29
+43                <action android:name="android.intent.action.VIEW" />
+43-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:28:17-69
+43-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:28:25-66
+44
+45                <category android:name="android.intent.category.DEFAULT" />
+45-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:29:17-76
+45-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:29:27-73
+46                <category android:name="android.intent.category.BROWSABLE" />
+46-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:30:17-78
+46-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:30:27-75
+47
+48                <data android:scheme="http" />
+48-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:31:17-47
+48-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:31:23-44
+49                <data android:scheme="https" />
+49-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:31:17-47
+49-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:31:23-44
+50            </intent-filter>
+51        </activity>
+52        <activity
+52-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:36:9-39:56
+53            android:name="com.limeos.browser.HistoryActivity"
+53-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:37:13-44
+54            android:exported="false"
+54-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:38:13-37
+55            android:theme="@style/Theme.LimeBrowser" />
+55-->/workspace/website/lime-browser/app/src/main/AndroidManifest.xml:39:13-53
+56
+57        <provider
+57-->[androidx.emoji2:emoji2:1.2.0] /root/.gradle/caches/transforms-3/34e9d2ecb03fed35e86c5ba34096e160/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+58            android:name="androidx.startup.InitializationProvider"
+58-->[androidx.emoji2:emoji2:1.2.0] /root/.gradle/caches/transforms-3/34e9d2ecb03fed35e86c5ba34096e160/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+59            android:authorities="com.limeos.browser.androidx-startup"
+59-->[androidx.emoji2:emoji2:1.2.0] /root/.gradle/caches/transforms-3/34e9d2ecb03fed35e86c5ba34096e160/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+60            android:exported="false" >
+60-->[androidx.emoji2:emoji2:1.2.0] /root/.gradle/caches/transforms-3/34e9d2ecb03fed35e86c5ba34096e160/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+61            <meta-data
+61-->[androidx.emoji2:emoji2:1.2.0] /root/.gradle/caches/transforms-3/34e9d2ecb03fed35e86c5ba34096e160/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+62                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+62-->[androidx.emoji2:emoji2:1.2.0] /root/.gradle/caches/transforms-3/34e9d2ecb03fed35e86c5ba34096e160/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+63                android:value="androidx.startup" />
+63-->[androidx.emoji2:emoji2:1.2.0] /root/.gradle/caches/transforms-3/34e9d2ecb03fed35e86c5ba34096e160/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+64            <meta-data
+64-->[androidx.lifecycle:lifecycle-process:2.4.1] /root/.gradle/caches/transforms-3/53293a914aef093f90527b36dd5c2e86/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+65                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+65-->[androidx.lifecycle:lifecycle-process:2.4.1] /root/.gradle/caches/transforms-3/53293a914aef093f90527b36dd5c2e86/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+66                android:value="androidx.startup" />
+66-->[androidx.lifecycle:lifecycle-process:2.4.1] /root/.gradle/caches/transforms-3/53293a914aef093f90527b36dd5c2e86/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+67        </provider>
+68    </application>
+69
+70</manifest>

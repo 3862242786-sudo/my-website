@@ -1,0 +1,134 @@
+[
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/layout_item_tab.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/layout/item_tab.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ic_back.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ic_back.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ic_close.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ic_close.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_bg_drag_handle.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/bg_drag_handle.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_new_tab_bg.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/new_tab_bg.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ic_home.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ic_home.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ic_add.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ic_add.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ic_phone.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ic_phone.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/layout_dialog_tabs.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/layout/dialog_tabs.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_tab_card_bg.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/tab_card_bg.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_progress_drawable.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/progress_drawable.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/layout_activity_main.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ua_mode_bg.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ua_mode_bg.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_badge_bg.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/badge_bg.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_url_bar_bg.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/url_bar_bg.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/layout_dialog_ua_mode.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/layout/dialog_ua_mode.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/layout_item_history.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/layout/item_history.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ic_desktop.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ic_desktop.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_history_item_bg.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/history_item_bg.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_bg_bottom_sheet.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/bg_bottom_sheet.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/layout_activity_history.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/layout/activity_history.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ic_menu.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ic_menu.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ic_refresh.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ic_refresh.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ic_forward.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ic_forward.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ic_delete.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ic_delete.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ic_tablet.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ic_tablet.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ic_tabs.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ic_tabs.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/drawable_ic_menu_dot.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/drawable/ic_menu_dot.xml"
+    },
+    {
+        "merged": "com.limeos.browser.app-merged_res-29:/layout_bottom_sheet_menu.xml.flat",
+        "source": "com.limeos.browser.app-main-31:/layout/bottom_sheet_menu.xml"
+    }
+]

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个性化设置 - 青柠网盘</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="site-check.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            padding-top: 56px;
+            transition: background 0.3s, color 0.3s;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 56px;
+        }
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+        }
+        .nav-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .nav-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nav-btn-save {
+            background: var(--qn-primary, #3b82f6);
+            color: #fff;
+        }
+        .nav-btn-save:hover {
+            background: var(--qn-primary-hover, #2563eb);
+            transform: translateY(-1px);
+        }
+        .nav-btn-reset {
+            background: var(--qn-muted-bg, #f1f5f9);
+            color: var(--qn-text-secondary, #64748b);
+        }
+        .nav-btn-reset:hover {
+            background: var(--qn-border, #e2e8f0);
+        }
+
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 20px 60px;
+        }
+
+        /* 预设主题网格 */
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-title .badge {
+            font-size: 12px;
+            font-weight: 400;
+            padding: 2px 10px;
+            border-radius: 20px;
+            background: var(--qn-muted-bg, #f1f5f9);
+            color: var(--qn-text-secondary, #64748b);
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+        .preset-card {
+            border: 2px solid var(--qn-border, #e2e8f0);
+            border-radius: 14px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+        }
+        .preset-card:hover {
+            border-color: var(--qn-primary, #3b82f6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .preset-card.active {
+            border-color: var(--qn-primary, #3b82f6);
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+        }
+        .preset-card.active::after {
+            content: '\2713';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--qn-primary, #3b82f6);
+            color: #fff;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .preset-preview {
+            height: 60px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            display: flex;
+            overflow: hidden;
+        }
+        .preset-preview .pp-bg { flex: 2; }
+        .preset-preview .pp-surface { flex: 3; display: flex; align-items: center; justify-content: center; }
+        .preset-preview .pp-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+        }
+        .preset-name {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .preset-tag {
+            font-size: 11px;
+            color: var(--qn-text-muted, #94a3b8);
+            margin-top: 2px;
+        }
+
+        /* 自定义控制区 */
+        .control-panel {
+            background: var(--qn-surface, #fff);
+            border: 1px solid var(--qn-border, #e2e8f0);
+            border-radius: 16px;
+            padding: 24px;
+        }
+        .control-group {
+            margin-bottom: 28px;
+        }
+        .control-group:last-child { margin-bottom: 0; }
+        .control-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .control-value {
+            font-size: 13px;
+            color: var(--qn-text-secondary, #64748b);
+            background: var(--qn-muted-bg, #f1f5f9);
+            padding: 2px 10px;
+            border-radius: 6px;
+        }
+
+        /* 滑块 */
+        .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--qn-border, #e2e8f0);
+            outline: none;
+        }
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--qn-primary, #3b82f6);
+            cursor: pointer;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: transform 0.15s;
+        }
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--qn-primary, #3b82f6);
+            cursor: pointer;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        /* 颜色选择器 */
+        .color-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .color-row label {
+            font-size: 14px;
+            min-width: 100px;
+            color: var(--qn-text-secondary, #64748b);
+        }
+        .color-picker-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+        .color-input {
+            width: 44px;
+            height: 44px;
+            border: 2px solid var(--qn-border, #e2e8f0);
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 0;
+            background: none;
+        }
+        .color-input::-webkit-color-swatch-wrapper { padding: 0; }
+        .color-input::-webkit-color-swatch { border: none; border-radius: 8px; }
+        .color-hex {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid var(--qn-border, #e2e8f0);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: monospace;
+            text-transform: uppercase;
+        }
+        .gradient-preview {
+            height: 40px;
+            border-radius: 10px;
+            margin-top: 8px;
+            border: 1px solid var(--qn-border, #e2e8f0);
+        }
+
+        /* 渐变方向 */
+        .gradient-directions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .gradient-dir-btn {
+            padding: 6px 14px;
+            border: 1px solid var(--qn-border, #e2e8f0);
+            border-radius: 8px;
+            background: var(--qn-surface, #fff);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .gradient-dir-btn:hover { border-color: var(--qn-primary, #3b82f6); }
+        .gradient-dir-btn.active {
+            background: var(--qn-primary, #3b82f6);
+            color: #fff;
+            border-color: var(--qn-primary, #3b82f6);
+        }
+
+        /* 开关 */
+        .switch-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--qn-border, #e2e8f0);
+        }
+        .switch-row:last-child { border-bottom: none; }
+        .switch-label { font-size: 15px; font-weight: 500; }
+        .switch-desc { font-size: 12px; color: var(--qn-text-muted, #94a3b8); margin-top: 2px; }
+        .switch {
+            position: relative;
+            width: 48px;
+            height: 26px;
+            flex-shrink: 0;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .switch-slider {
+            position: absolute;
+            inset: 0;
+            background: var(--qn-border, #e2e8f0);
+            border-radius: 26px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .switch-slider::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: 3px;
+            top: 3px;
+            background: #fff;
+            border-radius: 50%;
+            transition: 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+        .switch input:checked + .switch-slider {
+            background: var(--qn-primary, #3b82f6);
+        }
+        .switch input:checked + .switch-slider::before {
+            transform: translateX(22px);
+        }
+
+        /* 实时预览 */
+        .preview-section {
+            position: sticky;
+            top: 70px;
+        }
+        .preview-box {
+            border: 1px solid var(--qn-border, #e2e8f0);
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--qn-bg, #f8fafc);
+        }
+        .preview-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--qn-border, #e2e8f0);
+        }
+        .preview-nav-logo {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+        }
+        .preview-nav-text {
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .preview-body {
+            padding: 20px;
+        }
+        .preview-card {
+            border: 1px solid var(--qn-border, #e2e8f0);
+            border-radius: var(--qn-radius, 12px);
+            padding: 16px;
+            margin-bottom: 12px;
+            background: var(--qn-surface, #fff);
+        }
+        .preview-card-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .preview-card-text {
+            font-size: 13px;
+            color: var(--qn-text-secondary, #64748b);
+        }
+        .preview-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+        .preview-gradient-text {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        /* 底部操作栏 */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--qn-surface, #fff);
+            border-top: 1px solid var(--qn-border, #e2e8f0);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 100;
+            box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
+        }
+        .bottom-bar-inner {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+        .bb-btn {
+            padding: 10px 24px;
+            border-radius: 10px;
+            border: none;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .bb-btn-primary {
+            background: var(--qn-primary, #3b82f6);
+            color: #fff;
+        }
+        .bb-btn-primary:hover {
+            background: var(--qn-primary-hover, #2563eb);
+        }
+        .bb-btn-secondary {
+            background: var(--qn-muted-bg, #f1f5f9);
+            color: var(--qn-text-secondary, #64748b);
+        }
+        .bb-btn-secondary:hover {
+            background: var(--qn-border, #e2e8f0);
+        }
+
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 32px;
+        }
+        @media (max-width: 768px) {
+            .layout-grid { grid-template-columns: 1fr; }
+            .preview-section { display: none; }
+            .bottom-bar { padding: 10px 16px; }
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-4px);
+        }
+        .toast-success {
+            background: #22c55e;
+            color: #fff;
+        }
+        .toast-info {
+            background: var(--qn-primary, #3b82f6);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-back">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                <span class="nav-title">个性化设置</span>
+            </a>
+            <div class="nav-actions">
+                <button class="nav-btn nav-btn-reset" onclick="resetAll()">重置</button>
+                <button class="nav-btn nav-btn-save" onclick="saveAll()">保存</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="layout-grid">
+            <!-- 左侧：设置区 -->
+            <div class="settings-col">
+                <!-- 预设主题 -->
+                <div class="section">
+                    <div class="section-title">
+                        预设主题
+                        <span class="badge">一键应用</span>
+                    </div>
+                    <div class="preset-grid" id="presetGrid"></div>
+                </div>
+
+                <!-- 自定义颜色 -->
+                <div class="section">
+                    <div class="section-title">自定义颜色</div>
+                    <div class="control-panel">
+                        <div class="control-group">
+                            <div class="control-label">
+                                <span>主色调</span>
+                                <span class="control-value" id="primaryVal">#3b82f6</span>
+                            </div>
+                            <div class="color-row">
+                                <label>主色</label>
+                                <div class="color-picker-wrap">
+                                    <input type="color" class="color-input" id="colorPrimary" value="#3b82f6">
+                                    <input type="text" class="color-hex" id="hexPrimary" value="#3b82f6" maxlength="7">
+                                </div>
+                            </div>
+                            <div class="color-row">
+                                <label>主色 Hover</label>
+                                <div class="color-picker-wrap">
+                                    <input type="color" class="color-input" id="colorPrimaryHover" value="#2563eb">
+                                    <input type="text" class="color-hex" id="hexPrimaryHover" value="#2563eb" maxlength="7">
+                                </div>
+                            </div>
+                            <div class="color-row">
+                                <label>辅助色</label>
+                                <div class="color-picker-wrap">
+                                    <input type="color" class="color-input" id="colorSecondary" value="#6366f1">
+                                    <input type="text" class="color-hex" id="hexSecondary" value="#6366f1" maxlength="7">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="control-label">
+                                <span>渐变效果</span>
+                                <span class="control-value" id="gradDirVal">135deg</span>
+                            </div>
+                            <div class="gradient-preview" id="gradientPreview"></div>
+                            <div class="gradient-directions">
+                                <button class="gradient-dir-btn" data-dir="90deg">&#8594;</button>
+                                <button class="gradient-dir-btn active" data-dir="135deg">&#8600;</button>
+                                <button class="gradient-dir-btn" data-dir="180deg">&#8595;</button>
+                                <button class="gradient-dir-btn" data-dir="45deg">&#8601;</button>
+                                <button class="gradient-dir-btn" data-dir="to right">&#8594;</button>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="switch-row">
+                                <div>
+                                    <div class="switch-label">暗色模式</div>
+                                    <div class="switch-desc">使用深色背景，适合夜间浏览</div>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="darkModeToggle">
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 调整滑块 -->
+                <div class="section">
+                    <div class="section-title">精细调整</div>
+                    <div class="control-panel">
+                        <div class="control-group">
+                            <div class="control-label">
+                                <span>字体大小</span>
+                                <span class="control-value" id="fontSizeVal">16px</span>
+                            </div>
+                            <input type="range" class="slider" id="fontSizeSlider" min="12" max="22" step="1" value="16">
+                        </div>
+
+                        <div class="control-group">
+                            <div class="control-label">
+                                <span>导航栏透明度</span>
+                                <span class="control-value" id="navOpacityVal">85%</span>
+                            </div>
+                            <input type="range" class="slider" id="navOpacitySlider" min="40" max="100" step="5" value="85">
+                        </div>
+
+                        <div class="control-group">
+                            <div class="control-label">
+                                <span>圆角大小</span>
+                                <span class="control-value" id="radiusVal">12px</span>
+                            </div>
+                            <input type="range" class="slider" id="radiusSlider" min="0" max="24" step="2" value="12">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧：实时预览 -->
+            <div class="preview-section">
+                <div class="section-title">实时预览</div>
+                <div class="preview-box">
+                    <div class="preview-nav">
+                        <div class="preview-nav-logo" id="pvLogo"></div>
+                        <span class="preview-nav-text" id="pvNavText">青柠网盘</span>
+                    </div>
+                    <div class="preview-body">
+                        <div class="preview-gradient-text" id="pvGradient">个性化你的体验</div>
+                        <div class="preview-card">
+                            <div class="preview-card-title">文件名称.pdf</div>
+                            <div class="preview-card-text">2024-01-15 &middot; 2.3MB</div>
+                        </div>
+                        <div class="preview-card">
+                            <div class="preview-card-title">照片合集.zip</div>
+                            <div class="preview-card-text">2024-01-10 &middot; 15.7MB</div>
+                        </div>
+                        <div class="preview-btn" id="pvBtn">上传文件</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部操作栏 -->
+    <div class="bottom-bar">
+        <div class="bottom-bar-inner">
+            <button class="bb-btn bb-btn-secondary" onclick="resetAll()">恢复默认</button>
+            <button class="bb-btn bb-btn-primary" onclick="saveAll()">保存并应用</button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="personalize.js"></script>
+</body>
+</html>

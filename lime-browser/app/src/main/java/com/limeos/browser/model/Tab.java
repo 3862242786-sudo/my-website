@@ -8,6 +8,7 @@ public class Tab {
     public String url;
     public WebView webView;
     public boolean isActive;
+    public boolean needsReload;
     public long createdAt;
 
     public Tab(int id, String url) {
@@ -15,6 +16,7 @@ public class Tab {
         this.url = url;
         this.title = url;
         this.isActive = false;
+        this.needsReload = false;
         this.createdAt = System.currentTimeMillis();
     }
 }

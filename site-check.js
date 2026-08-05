@@ -1,3 +1,11 @@
+// ===== 全局主题引擎同步加载（在 head 中执行，确保渲染前生效）=====
+// 通过 document.write 同步加载 theme.js，保证所有页面自动应用主题
+(function() {
+    if (!window.QNTheme) {
+        document.write('<script src="theme.js"><\/script>');
+    }
+})();
+
 // ===== 网站关闭状态检查 + 青柠浏览器 UA 模式检测 =====
 
 (function() {
@@ -17,7 +25,8 @@
 
     // ===== 青柠浏览器 UA 模式检测 =====
     // 通过 CPU 架构判断是否为移动设备，与 UA 模式对比
-    if (typeof LimeBrowser !== 'undefined' && LimeBrowser.getDeviceArch && LimeBrowser.getUAMode) {
+    function checkUAMode() {
+        if (typeof LimeBrowser === 'undefined' || !LimeBrowser.getDeviceArch || !LimeBrowser.getUAMode) return;
         try {
             var arch = LimeBrowser.getDeviceArch();
             var isMobileArch = (arch.indexOf('arm') !== -1);
@@ -27,6 +36,13 @@
                 showUAMismatchDialog(uaMode);
             }
         } catch(e) {}
+    }
+
+    // DOM 加载完成后再执行（脚本在 head 中，body 可能还未解析）
+    if (document.body) {
+        checkUAMode();
+    } else {
+        document.addEventListener('DOMContentLoaded', checkUAMode);
     }
 
     function showUAMismatchDialog(uaMode) {

@@ -215,20 +215,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 应用 UA 到所有 WebView 并刷新当前页
+    // 关键：setUserAgentString 在部分 Android 版本上对已加载的 WebView 不会立即生效，
+    // 因此需要销毁旧 WebView 并重建来确保新 UA 被使用
     private void applyUAAndReload() {
         String ua = getEffectiveUA();
+        // 保存当前活动标签的 URL
+        Tab activeTab = getActiveTab();
+        String currentUrl = null;
+        if (activeTab != null && activeTab.webView != null) {
+            currentUrl = activeTab.webView.getUrl();
+        }
+
+        // 更新非活动标签的 UA（标记为需要重新加载）
         for (Tab t : tabs) {
-            if (t.webView != null) {
+            if (t.webView != null && !t.isActive) {
                 t.webView.getSettings().setUserAgentString(ua);
-                if (t.isActive) {
-                    String url = t.webView.getUrl();
-                    if (url != null && !url.isEmpty()) {
-                        t.webView.loadUrl(url);
-                    } else {
-                        t.webView.reload();
-                    }
-                }
+                t.needsReload = true;
             }
+        }
+
+        // 重建活动标签的 WebView，确保 UA 生效
+        if (activeTab != null && currentUrl != null && !currentUrl.isEmpty()
+                && !currentUrl.equals("about:blank")) {
+            String url = currentUrl;
+            try {
+                if (activeTab.webView != null) {
+                    activeTab.webView.stopLoading();
+                    webViewContainer.removeView(activeTab.webView);
+                    activeTab.webView.removeAllViews();
+                    activeTab.webView.destroy();
+                }
+            } catch (Exception e) { /* ignore */ }
+
+            activeTab.webView = createWebView();
+            activeTab.webView.getSettings().setUserAgentString(ua);
+            webViewContainer.removeAllViews();
+            webViewContainer.addView(activeTab.webView);
+            activeTab.webView.loadUrl(url);
+        } else if (activeTab != null && activeTab.webView != null) {
+            activeTab.webView.getSettings().setUserAgentString(ua);
+            activeTab.webView.reload();
         }
     }
 
@@ -458,6 +484,16 @@ public class MainActivity extends AppCompatActivity {
         webViewContainer.removeAllViews();
         if (target.webView != null) {
             webViewContainer.addView(target.webView);
+            // 如果该标签在 UA 切换后被标记为需要重新加载，则自动刷新
+            if (target.needsReload) {
+                target.needsReload = false;
+                String url = target.webView.getUrl();
+                if (url != null && !url.isEmpty() && !url.equals("about:blank")) {
+                    target.webView.loadUrl(url);
+                } else {
+                    target.webView.reload();
+                }
+            }
             try {
                 String url = target.webView.getUrl();
                 if (url != null && urlInput != null) urlInput.setText(url);
